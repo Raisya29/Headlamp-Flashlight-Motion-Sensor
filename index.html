@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headlamp Flashlight Motion Sensor - Luxury Goods</title>
+    <meta name="description" content="Lampu kepala praktis dengan sensor gerak, tinggal lambaikan tangan untuk menyalakan atau mematikan. Cahaya super terang, ringan, dan nyaman dipakai.">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles & Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <style>
+        :root {
+            --black: #000000;
+            --charcoal: #36454f;
+            --gold: #d4af37;
+            --champagne: #f7e7ce;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+        
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--black) 0%, var(--charcoal) 100%);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, var(--gold) 0%, #f4d03f 100%);
+        }
+        
+        .testimonial-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .testimonial-lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        .social-proof-popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 320px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 16px;
+            z-index: 100;
+            transform: translateX(400px);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            border-left: 4px solid var(--gold);
+        }
+        
+        .social-proof-popup.active {
+            transform: translateX(0);
+        }
+        
+        .carousel {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .carousel-item {
+                width: 50%;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .carousel-item {
+                width: 33.333%;
+            }
+        }
+        
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-control:hover {
+            background: white;
+        }
+        
+        .carousel-control.prev {
+            left: 10px;
+        }
+        
+        .carousel-control.next {
+            right: 10px;
+        }
+        
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            background: var(--gold);
+        }
+        
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            z-index: 90;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .sticky-cta.active {
+            transform: translateY(0);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--champagne);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .product-image {
+            transition: transform 0.3s ease;
+        }
+        
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .price-original {
+            text-decoration: line-through;
+            color: #999;
+        }
+        
+        .price-discount {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .countdown-item {
+            background: var(--charcoal);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .countdown-number {
+            font-size: 24px;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .countdown-label {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        
+        /* Custom OrderOnline Styling */
+        .ooef form {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(247,231,206,0.9) 100%) !important;
+            backdrop-filter: blur(10px) !important;
+            border-radius: 16px !important;
+            padding: 30px !important;
+            border: 1px solid rgba(212, 175, 55, 0.3) !important;
+        }
+        
+        .ooef .form-control {
+            border-radius: 8px !important;
+            border: 1px solid #ddd !important;
+            padding: 12px 15px !important;
+            font-family: 'Open Sans', sans-serif !important;
+        }
+        
+        .ooef .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, #f4d03f 100%) !important;
+            border: none !important;
+            border-radius: 8px !important;
+            padding: 15px 25px !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .ooef .btn-primary:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4) !important;
+        }
+        
+        .testimonial-highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#000000',
+                        charcoal: '#36454f',
+                        gold: '#d4af37',
+                        champagne: '#f7e7ce',
+                        white: '#ffffff',
+                    },
+                    fontFamily: {
+                        heading: ['Cormorant Garamond', 'serif'],
+                        body: ['Open Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed w-full z-50 gradient-bg text-white">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-heading font-bold">Luxury Goods</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#features" class="hover:text-gold transition-colors">Fitur</a>
+                <a href="#gallery" class="hover:text-gold transition-colors">Galeri</a>
+                <a href="#testimonials" class="hover:text-gold transition-colors">Testimoni</a>
+                <a href="#order" class="hover:text-gold transition-colors">Pesan</a>
+            </nav>
+            <button class="md:hidden">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-16 gradient-bg text-white overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://down-id.img.susercontent.com/file/sg-11134201-7rd4b-m70clzzp684a12.webp" alt="Headlamp Flashlight Motion Sensor" class="w-full h-full object-cover opacity-30">
+        </div>
+        
+        <div class="container mx-auto px-4 z-10 relative" data-aos="fade-up">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-6xl font-heading font-bold mb-6">Headlamp Flashlight Motion Sensor</h1>
+                <p class="text-xl md:text-2xl mb-8">Lambaikan tangan untuk menyalakan - teknologi canggih dalam genggaman Anda</p>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
+                    <div class="text-3xl font-bold text-gold">Rp 179.000</div>
+                    <div class="text-xl line-through opacity-70">Rp 270.000</div>
+                    <div class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">Hemat 85%</div>
+                </div>
+                
+                <div class="bg-charcoal rounded-lg p-4 mb-8 glassmorphism">
+                    <p class="text-sm">🔥 Stok Terbatas: Hanya <span class="text-gold font-bold">13 pcs</span> tersisa!</p>
+                </div>
+                
+                <a href="#order" class="gold-gradient text-black font-bold text-lg px-8 py-4 rounded-lg inline-block hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                    Pesan Sekarang ›
+                </a>
+                
+                <div class="mt-8 flex flex-wrap justify-center gap-6">
+                    <div class="flex items-center">
+                        <i data-feather="star" class="text-gold mr-2"></i>
+                        <span>Produk Original</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="shield" class="text-gold mr-2"></i>
+                        <span>Garansi 1 Bulan</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="clock" class="text-gold mr-2"></i>
+                        <span>Pengiriman Cepat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo Section -->
+    <section class="py-20 bg-champagne">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Lihat Cara Kerjanya</h2>
+                <p class="text-lg max-w-2xl mx-auto">Cukup lambaikan tangan untuk menyalakan atau mematikan - tidak perlu repot menekan tombol!</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl" data-aos="zoom-in">
+                <video class="w-full" controls poster="https://down-id.img.susercontent.com/file/sg-11134201-7rd4n-m70cly2204ddd3.webp">
+                    <source src="https://video.aliexpress-media.com/play/u/ae_sg_item/2214509596588/p/1/e/6/t/10301/1100078537138.mp4?from=chrome" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Fitur Unggulan</h2>
+                <p class="text-lg max-w-2xl mx-auto">Desain canggih dengan teknologi terbaru untuk pengalaman terbaik</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i data-feather="activity" class="text-2xl text-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-semibold mb-3">Sensor Gerak</h3>
+                    <p>Hanya dengan melambaikan tangan, lampu akan menyala atau mati secara otomatis</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i data-feather="sun" class="text-2xl text-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-semibold mb-3">Cahaya Super Terang</h3>
+                    <p>Penerangan maksimal hingga 100 meter dengan LED berkualitas tinggi</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i data-feather="battery-charging" class="text-2xl text-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-semibold mb-3">Baterai Tahan Lama</h3>
+                    <p>Daya tahan hingga 8 jam penggunaan terus-menerus dengan pengisian USB</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i data-feather="feather" class="text-2xl text-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-semibold mb-3">Ringan & Nyaman</h3>
+                    <p>Hanya 85 gram dengan bahan yang nyaman dipakai dalam waktu lama</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-champagne">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Galeri Produk</h2>
+                <p class="text-lg max-w-2xl mx-auto">Lihat detail produk dari berbagai angle</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="overflow-hidden rounded-lg" data-aos="zoom-in">
+                    <img src="https://down-id.img.susercontent.com/file/sg-11134201-7rd6i-lw8ahpm3sdvt79.webp" alt="Selfie Light Led" class="w-full h-48 object-cover hover:scale-110 transition duration-500 cursor-pointer" onclick="openLightbox(this.src)">
+                </div>
+                <div class="overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://down-id.img.susercontent.com/file/id-11134207-7qul6-lfj4yxjp26hu38.webp" alt="Selfie Light Led" class="w-full h-48 object-cover hover:scale-110 transition duration-500 cursor-pointer" onclick="openLightbox(this.src)">
+                </div>
+                <div class="overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://down-id.img.susercontent.com/file/id-11134207-7quky-lfj4yxjp7srm6b.webp" alt="Selfie Light Led" class="w-full h-48 object-cover hover:scale-110 transition duration-500 cursor-pointer" onclick="openLightbox(this.src)">
+                </div>
+                <div class="overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://down-id.img.susercontent.com/file/id-11134207-7qula-lfj4yxjp6e7687.webp" alt="Selfie Light Led" class="w-full h-48 object-cover hover:scale-110 transition duration-500 cursor-pointer" onclick="openLightbox(this.src)">
+                </div>
+                <div class="overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="https://down-id.img.susercontent.com/file/sg-11134201-7rd5r-m70clyhlesdl8f.webp" alt="Selfie Light Led" class="w-full h-48 object-cover hover:scale-110 transition duration-500 cursor-pointer" onclick="openLightbox(this.src)">
+                </div>
+                <div class="overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="500">
+                    <img src="https://down-id.img.susercontent.com/file/sg-11134201-7rd5n-m70clzcy4wm97c.webp" alt="Selfie Light Led" class="w-full h-48 object-cover hover:scale-110 transition duration-500 cursor-pointer" onclick="openLightbox(this.src)">
+                </div>
+                <div class="overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="600">
+                    <img src="https://down-id.img.susercontent.com/file/sg-11134201-7rd65-m70clz24jdzv22.webp" alt="Selfie Light Led" class="w-full h-48 object-cover hover:scale-110 transition duration-500 cursor-pointer" onclick="openLightbox(this.src)">
+                </div>
+                <div class="overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="700">
+                    <img src="https://down-id.img.susercontent.com/file/sg-11134201-7rd4n-m70clyqqzzwyb8.webp" alt="Selfie Light Led" class="w-full h-48 object-cover hover:scale-110 transition duration-500 cursor-pointer" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Testimoni Pelanggan</h2>
+                <p class="text-lg max-w-2xl mx-auto">Lihat pengalaman nyata dari pengguna Headlamp Flashlight Motion Sensor</p>
+            </div>
+            
+            <div class="carousel relative" data-aos="fade-up">
+                <div class="carousel-inner">
+                    <!-- Testimonial 1 -->
+                    <div class="carousel-item p-4">
+                        <div class="bg-champagne rounded-2xl p-6 h-full">
+                            <div class="flex items-center mb-4">
+                                <img src="https://i.pinimg.com/736x/70/93/67/7093670c576a5d4a154d225f32740ac5.jpg" alt="achmadi.imam" class="w-10 h-10 rounded-full object-cover mr-3">
+                                <div>
+                                    <div class="font-semibold">achmadi.imam</div>
+                                    <div class="flex text-yellow-400">
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-4">"<span class="testimonial-highlight">Cahaya cukup terang</span>, <span class="testimonial-highlight">sensor sangat membantu</span> jadi gaperlu pencet2"</p>
+                            <img src="https://down-id.img.susercontent.com/file/id-11134103-7rbk6-m72mqkf6cies28.webp" alt="Testimonial Media" class="w-20 h-20 rounded-lg object-cover cursor-pointer" onclick="openLightbox(this.src)">
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="carousel-item p-4">
+                        <div class="bg-champagne rounded-2xl p-6 h-full">
+                            <div class="flex items-center mb-4">
+                                <img src="https://i.pinimg.com/1200x/d9/a7/bc/d9a7bce4ac7c2e0d79cc3cb985b5788e.jpg" alt="hafiz_alif" class="w-10 h-10 rounded-full object-cover mr-3">
+                                <div>
+                                    <div class="font-semibold">hafiz_alif</div>
+                                    <div class="flex text-yellow-400">
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-4">"Beli yang kedua kalinya karna <span class="testimonial-highlight">barang lumayan oke</span> dan <span class="testimonial-highlight">harga terjangkau</span>. Mantap"</p>
+                            <img src="https://down-id.img.susercontent.com/file/id-11134103-7r98z-lv9vpk0ah5yh60.webp" alt="Testimonial Media" class="w-20 h-20 rounded-lg object-cover cursor-pointer" onclick="openLightbox(this.src)">
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="carousel-item p-4">
+                        <div class="bg-champagne rounded-2xl p-6 h-full">
+                            <div class="flex items-center mb-4">
+                                <img src="https://i.pinimg.com/736x/85/d1/23/85d1239a9b579fd156bdbb2bb8b9a3ec.jpg" alt="agungnugroho853" class="w-10 h-10 rounded-full object-cover mr-3">
+                                <div>
+                                    <div class="font-semibold">agungnugroho853</div>
+                                    <div class="flex text-yellow-400">
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-4">"Mantap senter kepalanya, <span class="testimonial-highlight">sensornya aktif</span>, Thanks Shopee n Seller.."</p>
+                            <img src="https://down-id.img.susercontent.com/file/id-11134103-7qukx-lhoboj0f1yay49.webp" alt="Testimonial Media" class="w-20 h-20 rounded-lg object-cover cursor-pointer" onclick="openLightbox(this.src)">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-control prev">
+                    <i data-feather="chevron-left"></i>
+                </div>
+                <div class="carousel-control next">
+                    <i data-feather="chevron-right"></i>
+                </div>
+                
+                <div class="carousel-dots">
+                    <div class="carousel-dot active"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lightbox -->
+        <div class="testimonial-lightbox" id="testimonialLightbox">
+            <div class="lightbox-content">
+                <span class="lightbox-close" onclick="closeLightbox()">×</span>
+                <img src="" alt="Testimonial Image" class="max-w-full max-h-full" id="lightboxImage">
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6">Dapatkan Penawaran Spesial Hari Ini</h2>
+                
+                <div class="bg-white text-black rounded-2xl p-8 mb-8">
+                    <div class="flex justify-center items-baseline mb-6">
+                        <span class="price-original text-2xl mr-4">Rp 270.000</span>
+                        <span class="price-discount text-4xl font-bold">Rp 179.000</span>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="text-sm text-charcoal mb-2">Penawaran berakhir dalam:</div>
+                        <div class="countdown">
+                            <div class="countdown-item">
+                                <span class="countdown-number" id="countdown-hours">08</span>
+                                <span class="countdown-label">Jam</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-number" id="countdown-minutes">24</span>
+                                <span class="countdown-label">Menit</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-number" id="countdown-seconds">36</span>
+                                <span class="countdown-label">Detik</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-red-100 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
+                        <div class="flex items-center">
+                            <i data-feather="alert-triangle" class="mr-2"></i>
+                            <span class="font-bold"></span> Hanya tersedia 13 pcs lagi dengan harga spesial ini
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                        <div class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-2"></i>
+                            <span>Garansi 1 Bulan</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-2"></i>
+                            <span>Produk Original</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="check-circle" class="text-green-500 mr-2"></i>
+                            <span>Bisa COD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section id="order" class="py-20 bg-champagne">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto" data-aos="fade-up">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Form Pemesanan</h2>
+                    <p class="text-lg">Isi data diri Anda dengan benar supaya cepat di proses</p>
+                </div>
+                
+                <!-- OrderOnline Embed Code -->
+                <div class="ooef">
+                    <form class="orderonline-embed-form" data-username="vera" data-product-slug="headlamp-flashlight-motion-sensor" data-product-id="68c7f960b4232fb8800ffba1" id="oo-embed-form-headlamp-flashlight-motion-sensor-6083" data-origin="orderonline">
+                        <div class="ooef-loader">
+                            <style>
+                                .ooef-loader{visibility: hidden;opacity: 0;position: absolute;left: 0;right: 0;top: 0;bottom: 0;display: flex;justify-content: center;align-items: center;flex-direction: column;animation: ooLoadingIn 10s ease;-webkit-animation: ooLoadingIn 10s ease;animation-fill-mode: forwards;overflow: hidden}
+                                @keyframes ooLoadingIn{0%{visibility: hidden;opacity: 0}20%{visibility: visible;opacity: 0}100%{visibility: visible;opacity: 1}}
+                                @-webkit-keyframes ooLoadingIn{0%{visibility: hidden;opacity: 0}20%{visibility: visible;opacity: 0}100%{visibility: visible;opacity: 1}}
+                                .ooef-loader>div,.ooef-loader>div:after{border-radius: 50%;width: 2.5rem;height: 2.5rem}
+                                .ooef-loader>div{font-size: 10px;position: relative;text-indent: -9999em;border: .25rem solid #f5f5f5;border-left: .25rem solid #55c4cf;-webkit-transform: translateZ(0);-ms-transform: translateZ(0);transform: translateZ(0);-webkit-animation: ooLoading 1.1s infinite linear;animation: ooLoading 1.1s infinite linear}
+                                .ooef-loader.error>div{border-left: .25rem solid #ff4500;animation-duration: 5s}
+                                @-webkit-keyframes ooLoading{0%{-webkit-transform: rotate(0);transform: rotate(0)}100%{-webkit-transform: rotate(360deg);transform: rotate(360deg)}}
+                                @keyframes ooLoading{0%{-webkit-transform: rotate(0);transform: rotate(0)}100%{-webkit-transform: rotate(360deg);transform: rotate(360deg)}}
+                            </style>
+                            <div aria-live="polite" role="status"><div>Loading...</div></div>
+                        </div>
+                    </form>
+                </div>
+                <script>
+                    if (typeof xLogError != 'function') {
+                        var xLogError = function (error) {
+                            var req = new XMLHttpRequest();
+                            var payload = JSON.stringify({ url: document.location.href, line: error.line, stack: error.stack });
+                            var params = 'message=' + encodeURIComponent(error.name) + '&payload=' + encodeURIComponent(payload) + '&type=embed&level=error';
+                            req.open('POST', 'https://api.orderonline.id/log', true);
+                            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                            req.send(params);
+                        };
+                    }
+                    try {
+                        if (typeof xEmbedScript != 'function') {
+                            var xEmbedScript = function () {
+                                !function(w, d, e, v, id, t, s) {
+                                    if (d.getElementById(id)) return;
+                                    t = d.createElement(e);t.async = !0;t.src = v;t.id = id;
+                                    s = d.getElementsByTagName(e)[0];
+                                    s.parentNode.insertBefore(t, s);
+                                }(window, document, 'script', 'https://cdn.orderonline.id/js/embed-v2-slim.min.js?v=8.0.4', 'oo-embed-js');
+                            };
+                        }
+                        if (typeof xEmbedInit != 'function') {
+                            var xEmbedInit = function (w, n) {
+                                if (w.ooe) return;
+                                n = w.ooe = function() {
+                                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                                };
+                                if (!w._ooe) w._ooe = n;
+                                n.push = n;n.loaded = !0;n.version = '8.0.4';n.queue = [];
+                            };
+                        }
+                        xEmbedInit(window);
+                        ooe('setup', 'redirect', 'https://vera.orderonline.id');
+                        ooe('init', '5f1a7807a9bf807d6c63d963', '68c7f960b4232fb8800ffba1', '68c7f960b4232fb8800ffba2', 'oo-embed-form-headlamp-flashlight-motion-sensor-6083', {"mode":"page","action":"Klik untuk pemesanan","title":"Form Pemesanan","triggerPixel":true,"triggerGtm":true});
+                        if (!window.jQuery) {
+                            !function(w, d, e, v, id, t, s) {
+                                if (d.getElementById(id)) return;
+                                t = d.createElement(e);t.async = !0;t.src = v;t.id = id;
+                                t.addEventListener('load', xEmbedScript);
+                                s = d.getElementsByTagName(e)[0];
+                                s.parentNode.insertBefore(t, s);
+                            }(window, document, 'script', 'https://cdn.orderonline.id/js/vendor/jquery.min.js', 'oo-embed-jquery');
+                        } else {
+                            xEmbedScript();
+                        }
+                    } catch (e) {
+                        xLogError(e);
+                        throw e;
+                    }
+                </script>
+                <!-- End OrderOnline Embed Code -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta" id="stickyCta">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <div class="font-bold text-lg">Headlamp Flashlight Motion Sensor</div>
+                    <div class="flex items-baseline">
+                        <span class="price-discount text-xl mr-2">Rp 27.000</span>
+                        <span class="price-original text-sm">Rp 179.000</span>
+                    </div>
+                </div>
+                <a href="#order" class="gold-gradient text-black font-bold px-6 py-3 rounded-lg">
+                    Pesan Sekarang
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Proof Popup -->
+    <div class="social-proof-popup" id="socialProofPopup">
+        <div class="flex items-start">
+            <img src="https://down-id.img.susercontent.com/file/sg-11134201-7rd6i-lw8ahpm3sdvt79@resize_w900_nl.webp" alt="Customer" class="w-10 h-10 rounded-full object-cover mr-3">
+            <div>
+                <div class="font-semibold" id="popupName">Vina</div>
+                <div class="text-sm text-gray-600" id="popupCity">dari Jakarta</div>
+                <div class="text-sm mt-1">baru saja memesan Headlamp Flashlight Motion Sensor</div>
+                <div class="text-xs text-gray-500 mt-1" id="popupTime">5 menit yang lalu</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
+            
+            // Initialize Feather Icons
+            feather.replace();
+            
+            // Initialize Testimonial Carousel
+            initTestimonialCarousel();
+            
+            // Initialize Countdown Timer
+            initCountdownTimer();
+            
+            // Initialize Sticky CTA
+            initStickyCTA();
+            
+            // Initialize Social Proof Popup
+            initSocialProofPopup();
+            
+            // Initialize FAQ Accordions
+            initFAQAccordions();
+        });
+        
+        // Testimonial Carousel
+        function initTestimonialCarousel() {
+            const carousel = document.querySelector('.carousel');
+            const inner = carousel.querySelector('.carousel-inner');
+            const items = carousel.querySelectorAll('.carousel-item');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            const prevBtn = carousel.querySelector('.carousel-control.prev');
+            const nextBtn = carousel.querySelector('.carousel-control.next');
+            
+            let currentIndex = 0;
+            let itemsPerView = getItemsPerView();
+            let autoScrollInterval;
+            
+            function getItemsPerView() {
+                if (window.innerWidth >= 1024) return 3;
+                if (window.innerWidth >= 768) return 2;
+                return 1;
+            }
+            
+            function updateCarousel() {
+                itemsPerView = getItemsPerView();
+                const translateX = -(currentIndex * (100 / itemsPerView));
+                inner.style.transform = `translateX(${translateX}%)`;
+                
+                // Update dots
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % Math.ceil(items.length / itemsPerView);
+                updateCarousel();
+            }
+            
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + Math.ceil(items.length / itemsPerView)) % Math.ceil(items.length / itemsPerView);
+                updateCarousel();
+            }
+            
+            function goToSlide(index) {
+                currentIndex = index;
+                updateCarousel();
+            }
+            
+            function startAutoScroll() {
+                autoScrollInterval = setInterval(nextSlide, 5000);
+            }
+            
+            function stopAutoScroll() {
+                clearInterval(autoScrollInterval);
+            }
+            
+            // Event listeners
+            nextBtn.addEventListener('click', () => {
+                stopAutoScroll();
+                nextSlide();
+                startAutoScroll();
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                stopAutoScroll();
+                prevSlide();
+                startAutoScroll();
+            });
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    stopAutoScroll();
+                    goToSlide(index);
+                    startAutoScroll();
+                });
+            });
+            
+            carousel.addEventListener('mouseenter', stopAutoScroll);
+            carousel.addEventListener('mouseleave', startAutoScroll);
+            
+            // Touch events for mobile
+            let startX, moveX;
+            carousel.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                stopAutoScroll();
+            });
+            
+            carousel.addEventListener('touchmove', (e) => {
+                moveX = e.touches[0].clientX;
+            });
+            
+            carousel.addEventListener('touchend', () => {
+                if (startX - moveX > 50) {
+                    nextSlide();
+                } else if (moveX - startX > 50) {
+                    prevSlide();
+                }
+                startAutoScroll();
+            });
+            
+            // Initialize
+            updateCarousel();
+            startAutoScroll();
+            
+            // Update on resize
+            window.addEventListener('resize', updateCarousel);
+        }
+        
+        // Lightbox functionality
+        function openLightbox(src) {
+            const lightbox = document.getElementById('testimonialLightbox');
+            const image = document.getElementById('lightboxImage');
+            image.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('testimonialLightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close lightbox when clicking outside
+        document.getElementById('testimonialLightbox').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('testimonialLightbox')) {
+                closeLightbox();
+            }
+        });
+        
+        // Countdown Timer
+        function initCountdownTimer() {
+            const hoursElement = document.getElementById('countdown-hours');
+            const minutesElement = document.getElementById('countdown-minutes');
+            const secondsElement = document.getElementById('countdown-seconds');
+            
+            let hours = 8;
+            let minutes = 24;
+            let seconds = 36;
+            
+            function updateCountdown() {
+                seconds--;
+                
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                    
+                    if (minutes < 0) {
+                        minutes = 59;
+                        hours--;
+                        
+                        if (hours < 0) {
+                            hours = 0;
+                            minutes = 0;
+                            seconds = 0;
+                            return;
+                        }
+                    }
+                }
+                
+                hoursElement.textContent = hours.toString().padStart(2, '0');
+                minutesElement.textContent = minutes.toString().padStart(2, '0');
+                secondsElement.textContent = seconds.toString().padStart(2, '0');
+            }
+            
+            // Update immediately and then every second
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+        
+        // Sticky CTA
+        function initStickyCTA() {
+            const stickyCta = document.getElementById('stickyCta');
+            let lastScrollTop = 0;
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 300) {
+                    if (scrollTop > lastScrollTop) {
+                        // Scrolling down
+                        stickyCta.classList.add('active');
+                    } else {
+                        // Scrolling up
+                        stickyCta.classList.add('active');
+                    }
+                } else {
+                    stickyCta.classList.remove('active');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+        
+        // Social Proof Popup
+        function initSocialProofPopup() {
+            const popup = document.getElementById('socialProofPopup');
+            const nameElement = document.getElementById('popupName');
+            const cityElement = document.getElementById('popupCity');
+            const timeElement = document.getElementById('popupTime');
+            
+            const names = ['Vina', 'Dina', 'Kartika', 'Lestari', 'Putri', 'Maya Sari', 'Rani', 'Permata', 'Lestari F'];
+            const cities = ['Jakarta', 'Surabaya', 'Bandung', 'Medan', 'Bekasi', 'Tangerang', 'Depok', 'Semarang'];
+            
+            let popupTimeout;
+            let popupInterval;
+            let isHovering = false;
+            
+            function showPopup() {
+                if (isHovering) return;
+                
+                const randomName = names[Math.floor(Math.random() * names.length)];
+                const randomCity = cities[Math.floor(Math.random() * cities.length)];
+                const randomMinutes = Math.floor(Math.random() * 15) + 1;
+                
+                nameElement.textContent = randomName;
+                cityElement.textContent = `dari ${randomCity}`;
+                timeElement.textContent = `${randomMinutes} menit yang lalu`;
+                
+                popup.classList.add('active');
+                
+                // Auto hide after 5 seconds
+                popupTimeout = setTimeout(() => {
+                    if (!isHovering) {
+                        hidePopup();
+                    }
+                }, 5000);
+            }
+            
+            function hidePopup() {
+                popup.classList.remove('active');
+            }
+            
+            function startPopupInterval() {
+                popupInterval = setInterval(showPopup, 8000);
+            }
+            
+            // Event listeners
+            popup.addEventListener('mouseenter', () => {
+                isHovering = true;
+                clearTimeout(popupTimeout);
+            });
+            
+            popup.addEventListener('mouseleave', () => {
+                isHovering = false;
+                popupTimeout = setTimeout(hidePopup, 2000);
+            });
+            
+            // Initialize
+            setTimeout(showPopup, 3000);
+            startPopupInterval();
+        }
+        
+        // FAQ Accordions
+        function initFAQAccordions() {
+            const accordionButtons = document.querySelectorAll('.border-b button');
+            
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('i');
+                    
+                    // Toggle content
+                    content.classList.toggle('hidden');
+                    
+                    // Rotate icon
+                    if (content.classList.contains('hidden')) {
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
